@@ -26,7 +26,7 @@
 
 2. Touch .env and filling as .env.example
 
-3. npm run migrage:lastest
+3. npm run migrate:latest
 
 4. npm run seed:run
 
