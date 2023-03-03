@@ -5,7 +5,7 @@ const chatApi = {
   completions: async function(role, content) {
   	try{
   		const API = `https://api.openai.com/v1/chat/completions`;
-  		const res = await axios.post(API, {
+  		const res = await axios.get(API, {
             "model": "gpt-3.5-turbo",
             "messages": [{"role": role, "content": content}]
         }, {

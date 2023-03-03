@@ -3,22 +3,6 @@ const axios = require('axios');
 const axiosInstance = axios.create();
 axiosInstance.defaults.timeout = 20000;
 
-axiosInstance.interceptors.request.use(
-  config => {
-    const newConfig = {
-      ...config,
-      params: {
-        ...config.params,
-      },
-      data: {
-        ...config.data,
-      }
-    };
-    return newConfig;
-  },
-  error => Promise.reject(error)
-);
-
 // const handleErrorRequest = error => {
 //   const { response } = error;
 //   const status = response ? response.status : 408;
