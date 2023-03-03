@@ -10,6 +10,7 @@ const chatApi = {
             "messages": [{"role": role, "content": content}]
         }, {
         headers: {
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${OPENAI_KEY}`
         }
       });
