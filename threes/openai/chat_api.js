@@ -16,6 +16,7 @@ const chatApi = {
       });
   		return res
   	} catch (e) {
+      console.log(e)
   		throw(e)
   	}
   },
