@@ -14,8 +14,8 @@ const chatApi = {
           'Authorization': `Bearer ${OPENAI_KEY}`
         }
       });
-      console.log(res)
-  		return res
+      console.log(res.data)
+  		return res.data
   	} catch (e) {
   		throw(e)
   	}
