@@ -15,7 +15,7 @@ const chatApi = {
       });
   		return Promise.resolve(res);
   	} catch (e) {
-  		return Promise.reject(e.response.data);
+  		return Promise.reject(e);
   	}
   },
 }
