@@ -14,7 +14,7 @@ const openAiController = {
       const datas = await chatApi.completions(role, content);
       res.json({error_code: 0, data: { datas } })
     } catch (e) {
-      res.json({error_code: 1, message: e})
+      res.json({error_code: 1, message: JSON.stringify(e) })
     }
   },
 }
