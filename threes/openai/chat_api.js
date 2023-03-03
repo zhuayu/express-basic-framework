@@ -14,9 +14,9 @@ const chatApi = {
           'Authorization': `Bearer ${OPENAI_KEY}`
         }
       });
-  		Promise.resolve(res.data)
+      return res.data
   	} catch (e) {
-  		Promise.reject(e)
+  		throw(e)
   	}
   },
 }

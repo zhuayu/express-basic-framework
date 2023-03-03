@@ -3,17 +3,33 @@ const axios = require('axios');
 const axiosInstance = axios.create();
 axiosInstance.defaults.timeout = 20000;
 
-const handleErrorRequest = error => {
-  const { response } = error;
-  const status = response ? response.status : 408;
-  if (response) {
-    const { data } = response;
-    const message = data.msg || "服务器发送错误，请稍后再试";
-    console.log(status, message);
-  } else {
-    console.log(error);
-  }
-};
+axiosInstance.interceptors.request.use(
+  config => {
+    const newConfig = {
+      ...config,
+      params: {
+        ...config.params,
+      },
+      data: {
+        ...config.data,
+      }
+    };
+    return newConfig;
+  },
+  error => { throw(error) }
+);
+
+// const handleErrorRequest = error => {
+//   const { response } = error;
+//   const status = response ? response.status : 408;
+//   if (response) {
+//     const { data } = response;
+//     const message = data.msg || "服务器发送错误，请稍后再试";
+//     console.log(status, message);
+//   } else {
+//     console.log(error);
+//   }
+// };
 
 // const successRes = res => {
 //   switch (true) {
