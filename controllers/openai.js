@@ -3,8 +3,8 @@ const schema = require('async-validator').default;
 
 const openAiController = {
   completions: async function(req, res, next) {
-    const role = req.query.role
-    const content = req.query.content;
+    const role = req.body.role
+    const content = req.body.content;
     const validator = new schema({
       role:  { type: 'string', required: true },
       content:  { type: 'string', required: true },

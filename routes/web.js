@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const carouselController = require('./../controllers/carousel.js');
+// const carouselController = require('./../controllers/carousel.js');
 const openAiController = require('./../controllers/openai.js');
 
 // const wechatController = require('./../controllers/wechat.js');
 // const feishuController = require('./../controllers/feishu.js');
 
-router.get('/carousel', carouselController.index);
+// router.get('/carousel', carouselController.index);
 
-router.get('/v1/chat', openAiController.completions);
+router.post('/v1/chat', openAiController.completions);
 
 // router.get('/wechat/oauth-url', wechatController.oAuthWebUrl);
 // router.get('/wechat/oauth', wechatController.oAuthWeb);
