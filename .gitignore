@@ -1,6 +1,7 @@
 wechat-info.json
 .DS_Store
 node_modules
+public/audio/*
 yarn.lock
 /dist
 

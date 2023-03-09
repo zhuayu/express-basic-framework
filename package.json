@@ -11,10 +11,12 @@
     "seed:run": "knex seed:run"
   },
   "dependencies": {
+    "ali-oss": "^6.17.1",
     "async-validator": "^3.2.3",
     "axios": "^0.27.2",
     "cookie-parser": "~1.4.3",
     "crypto-js": "^4.1.1",
+    "dayjs": "^1.11.7",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
     "express": "~4.16.0",
@@ -26,6 +28,7 @@
     "morgan": "~1.9.0",
     "mysql": "^2.17.1",
     "node-cache": "^5.1.2",
+    "uuid": "^9.0.0",
     "wechat-jssdk": "^5.0.3",
     "ws": "^8.12.1"
   }

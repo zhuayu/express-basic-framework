@@ -2,9 +2,12 @@
 const CryptoJS = require('crypto-js')
 const WebSocket = require('ws')
 const log = require('log4node')
+const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
 const XUNFEI_APPID = process.env.XUNFEI_APPID;
 const XUNFEI_APIKEY = process.env.XUNFEI_APIKEY;
 const XUNFEI_APISECRET = process.env.XUNFEI_APISECRET;
+const AUDIO_FS_DIR = "public/audio";
 
 const ttsApi = {
   tts:  function(content) {
@@ -49,15 +52,6 @@ const ttsApi = {
             }
           }
           ws.send(JSON.stringify(frame))
-
-          // 如果之前保存过音频文件，删除之
-          if (fs.existsSync('./test.mp3')) {
-            fs.unlink('./test.mp3', (err) => {
-              if (err) {
-                log.error('remove error: ' + err);
-              }
-            })
-          }
         });
 
         // 得到结果后进行处理，仅供参考，具体业务具体对待
@@ -76,24 +70,25 @@ const ttsApi = {
             return
           }
 
-          let audio = res.data.audio
-          let audioBuf = Buffer.from(audio, 'base64')
-          
-          resolve({url: 'ok'});
-          fs.writeFile('./test.pcm', audioBuf, { flag: 'a' }, (err) => {
+          let audio = res.data.audio;
+          let audioBuf = Buffer.from(audio, 'base64');
+          const name = uuidv4() + '.mp3';
+          const dir = `./${AUDIO_FS_DIR}`;
+          const path = `${dir}/${name}`;
+
+          fs.writeFile(path, audioBuf, { flag: 'a' }, (err) => {
             if (err) {
               log.error('save error: ' + err)
               return 
             }
             log.info('文件保存成功')
+            resolve({ path, name });
           })
 
           if (res.code == 0 && res.data.status == 2) {
             ws.close()
           }
         });
-
-
         // 资源释放
         ws.on('close', () => {
           log.info('connect close!')
