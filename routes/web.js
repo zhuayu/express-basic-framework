@@ -11,6 +11,7 @@ const xunfeiController = require('./../controllers/xunfei.js');
 // router.get('/carousel', carouselController.index);
 
 router.post('/v1/chat', openAiController.completions);
+router.get('/v1/chat/cooking', openAiController.md5Sign, openAiController.completions);
 
 // router.get('/wechat/oauth-url', wechatController.oAuthWebUrl);
 // router.get('/wechat/oauth', wechatController.oAuthWeb);
