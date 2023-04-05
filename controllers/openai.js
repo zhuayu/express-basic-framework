@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const chatApi = require('./../threes/openai/chat_api.js');
 const schema = require('async-validator').default;
 
@@ -16,6 +17,19 @@ const openAiController = {
     } catch (e) {
       res.json({error_code: 1, message: e })
     }
+  },
+  //暂时使用
+  md5Sign: function(req, res, next) {
+    const hash = crypto.createHash('md5');
+    const sign = hash.update(req.headers.timestamp + 'daily_@9').digest('hex')
+
+    if(sign !== req.headers.sign) {
+      return res.status(401).json({
+        error_code: 401,
+        message :'Auth Empty'
+      })
+    }
+    next()
   },
 }
 
